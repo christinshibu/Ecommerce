@@ -1,0 +1,60 @@
+{% extends 'base.html %}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        Welcome to Shop Cart here you can buys different products....
+    {% endif %}
+{% endblock %}
+{% block title %}
+    {% if category %}
+        {{ category.name }} - SHOP CART
+    {% else %}
+        Visit our new products - SHOP CART
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if category %}
+    <div>
+        <div>
+        <p><a href="{% url 'shop:allProdCat' %}">Our Product Collection</a></p>
+        </div>
+    </div>
+    {% endif %}
+<div>
+    {% if category %}
+        <img src="{{category.image.url" alt="{{category.name}}">
+</div>
+    <br>
+<div>
+        <h1>{{category.name}}</h1>
+        <p>{{category.description</p>
+</div>
+    {% else %}
+<div>
+<img src="{% static 'img/banner.png' %}" alt="our products">
+</div>
+<br>
+<div>
+    <h1>Our Products Collection</h1>
+    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+</div>
+    {% endif %}
+<div>
+    <div>
+        {% for product in products %}
+        <div>
+            <div>
+                <a href=""><img src="{{product.image.url}}" alt="{{product.name"></a>
+                <div>
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.name</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
